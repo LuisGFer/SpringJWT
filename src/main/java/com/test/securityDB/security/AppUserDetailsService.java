@@ -2,7 +2,6 @@ package com.test.securityDB.security;
 
 import com.test.securityDB.model.User;
 import com.test.securityDB.repository.UserRepository;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -33,8 +32,8 @@ public class AppUserDetailsService implements UserDetailsService {
         // devolvemos UserDetails
         UserBuilder builder = null;
         builder = org.springframework.security.core.userdetails.User.withUsername(username);
-        builder.password(new BCryptPasswordEncoder().encode(user.getPassword()));
-        //builder.password(user.getPassword());
+        //builder.password(new BCryptPasswordEncoder().encode(user.getPassword()));
+        builder.password(user.getPassword());
         builder.roles("ADMIN");
 
         return builder.build();
